@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Final Project</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2020</h1>
+<h1 align="middle">Final Project Proposal: Operation Bunny Bath</h1>
+<h2 align="middle">Cynthia Chang, Christopher Cheung, Sungho Park</h2>
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Operation Minecraft Bunny Bath </h2>
+<p>Using OpenGLSL, this project aims to create a more realistic rendering of some key components in Minecraft instead of the application’s block-style default renderings, such as water components, among others.
+<br />
+<br />
+Teammates: Cynthia Chang, Christopher Cheung, Sungho Park
+</p>
+
+<h2 align="middle">Problem Description</h2>
+<p>As gamers, we all wanted to create a project that we can use in our games. Since Minecraft’s graphics are very rudimentary, everything looks unrealistic - so we want to create shaders to improve aspects of the game such as the realism of the water, both in appearance and behavior. We are thinking of using OpenGL to create a shader pack that we will test by incorporating it into Minecraft. Some challenges include calculating how water shading works, learning how to use GLSL, and integrating our program smoothly with the Minecraft application.</p>
+
+<h2 align="middle">Goals & Deliverables</h2>
+<div align="center">
+            <table style="width=100%">
+                <tr>
+                    <td align="middle">
+                        <img src="p1.png" width="480px" />
+                        <figcaption align="middle">Original MC water</figcaption>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="middle">
+                        <img src="p2.jpg" width="480px" />
+                        <figcaption align="middle">Goal MC water</figcaption>
+                    </td>
+                    <td align="middle">
+                        <img src="p3.jpg" width="480px" />
+                        <figcaption align="middle">Goal MC water</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+<p><b>What We Plan to Deliver</b><br>
+We plan to develop more realistic water shading for Minecraft. This will include implementing water caustics as well as realistic water reflection/refraction. The reflection portion would mean that, for example, if there was a tree next to the water, the water would properly reflect the tree on its surface. The refraction portion would mean that if there was a plant underwater, it would be refracted when seen from the player’s point of view above water. We plan to implement these details using GLSL, a shading language in OpenGL. The main graphics problems we will be dealing with involves ray tracing. Another obvious task we hope to accomplish is integrating our shader program with Minecraft. Once we do so, we will measure the quality of our shader by seeing how much laggier or buggier Minecraft is with our mod and overall how much more CPU intensive Minecraft is with our mod. Our demo will show water in a variety of Minecraft environments, including deep water, shallow water, water in the middle of the ocean, water next to the shore, and etc.
+</p>
+
+<p><b>What We Hope to Deliver</b><br>
+If we get ahead of our timeline, we first hope to create waves and foam for our water. We hope to deliver SSAO for interior lighting once we finish water shading, as well as refraction from when the viewer is inside water.
+</p>
+
+<h2 align="middle">Schedule</h2>
+<p><b>April 14th, 2020</b><br>
+Learn OpenGL and GLSL <br />
+Read papers to have a basic understanding of water shading<br />
+Start on working integration with Minecraft<br />
+</p><br>
+
+<p><b>April 21st, 2020</b><br>
+Water caustics completed<br />
+Working integration with Minecraft<br />
+</p><br>
+
+<p><b>April 28th, 2020</b><br>
+Most of water shading done<br />
+Milestone Deliverable - Webpage, Video<br />
+</p><br>
+
+<p><b>May 7th, 2020</b><br>
+Stretch goals<br />
+Resolve any issues/bugs<br />
+Create Final Video and Final Webpage<br />
+</p><br>
+
+<h2 align="middle">Resources</h2>
+<p>
+<b>References:</b><br />
+GLSL Shader Tutorial: https://learnopengl.com/Getting-started/Shaders<br />
+GLSL Tutorial: http://www.lighthouse3d.com/tutorials/glsl-tutorial/<br />
+GLSL Documentations: https://www.khronos.org/registry/OpenGL/index_gl.php<br />
+Water rendering: http://evasion.imag.fr/Membres/Fabrice.Neyret/NaturalScenes/fluids/water/waves/fluids-nuages/waves/Jonathan/articlesCG/GPU_Gems2_tessendorfTechniqueOnGPU.pdf<br />
+Water shading: https://old.cescg.org/CESCG-2008/papers/BratislavaC-Mihalik-Andrej.pdf<br />
+https://www.gamedev.net/tutorials/programming/graphics/rendering-water-as-a-post-process-effect-r2642/<br />
+Water caustics: https://developer.download.nvidia.com/books/HTML/gpugems/gpugems_ch02.html<br />
+CMU paper on rendering water: http://www8.cs.umu.se/education/examina/Rapporter/MorganNaetterlund.pdf<br />
+<br />
+<b>Computing Platform:</b><br />
+Sungho, Chris: Macbook Pro (15-inch, 2016)<br />
+Cynthia: Ubuntu 18.04<br />
+<br />
+<b>Existing Code:</b><br />
+We will reference existing code from popular Minecraft shader mods to see how they integrate their GLSL code with the Minecraft application.
+
+</p>
+
+</body>
+</html>
