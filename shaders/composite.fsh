@@ -1,6 +1,7 @@
 #version 120
 
 varying vec4 texcoord;
+varying vec3 tcolor;
 
 uniform sampler2D gcolor;
 uniform sampler2D gnormal;
