@@ -1,9 +1,11 @@
 #version 120
 
+varying vec4 texcoord;
+varying vec3 tintcolor;
 
 void main() {
-  float indexOfRefractionRatio = 1.3333f;
+  gl_Position = ftransform();
 
-  /* DRAWBUFFERS:1 */
-  gl_FragData[0] = vec4(1,1,1);
+  texcoord = gl_MultiTexCoord0;
+  tintcolor = gl_Color.rgb;
 }
