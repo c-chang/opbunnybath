@@ -14,7 +14,7 @@ varying vec3 tintcolor;
 void main() {
   // float indexOfRefraction = 1.3333f;
   // float angle5 = dot(, normal);
-  vec4 tex = texture2D(gcolor, texcoord.st);
+  vec4 tex = texture2D(texture, texcoord.st);
   vec4 tex2 = texture2D(texture, texcoord.st + vec2(0,0.5));
   vec4 tex3 = texture2D(texture, texcoord.st + vec2(0,-0.5));
   vec4 tex4 = texture2D(texture, texcoord.st + vec2(-0.5,0));
@@ -27,6 +27,8 @@ void main() {
   tex.rgb = tex.rgb * vec3(0.1, 0.1, 1.0);
   tex2.rgb = tex2.rgb * vec3(0.1, 0.1, 1.0);
 /* DRAWBUFFERS:01 */
-  gl_FragData[0] = mix(tex, tex2, 0.5);
+  gl_FragData[0] = mix(tex, tex2, 0.7);
+  // tex.rgb *= tintcolor;
+  // gl_FragData[0] = tex;
   // gl_FragData[1] = vec4(normal, 1.0f);
 }
