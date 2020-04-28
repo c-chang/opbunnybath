@@ -27,8 +27,8 @@ void main() {
   tex.rgb = tex.rgb * vec3(0.1, 0.1, 1.0);
   tex2.rgb = tex2.rgb * vec3(0.1, 0.1, 1.0);
 
-
-  tex.rgba = vec4(0, 0.467, 0.745, 0.6);
+  // Ocean boat blue
+  tex.rgba = vec4(0, 0.467, 0.745, 0.5);
 /* DRAWBUFFERS:01 */
   gl_FragData[0] = mix(tex, vec4(tintcolor, 0.6), 0.5);
   // tex.rgb *= tintcolor;
