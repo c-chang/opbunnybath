@@ -1,5 +1,6 @@
 #version 120
 
+#define gbuffers_water
 
 void main() {
   float indexOfRefractionRatio = 1.3333f;
