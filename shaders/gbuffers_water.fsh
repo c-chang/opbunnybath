@@ -26,8 +26,11 @@ void main() {
   tex2 = mix(tex2, tex4, 0.5);
   tex.rgb = tex.rgb * vec3(0.1, 0.1, 1.0);
   tex2.rgb = tex2.rgb * vec3(0.1, 0.1, 1.0);
+
+
+  tex.rgba = vec4(0, 0.467, 0.745, 0.6);
 /* DRAWBUFFERS:01 */
-  gl_FragData[0] = mix(tex, tex2, 0.7);
+  gl_FragData[0] = mix(tex, vec4(tintcolor, 0.6), 0.5);
   // tex.rgb *= tintcolor;
   // gl_FragData[0] = tex;
   // gl_FragData[1] = vec4(normal, 1.0f);
