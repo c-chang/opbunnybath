@@ -16,7 +16,7 @@ varying vec4 ambientNdotL;
 void main() {
   vec4 tex = texture2D(gcolor, texcoord.st);
 /* DRAWBUFFERS:01 */
-  tex.rgb *= tintcolor;
+  tex.rgb = tintcolor;
   gl_FragData[0] = tex;
   // gl_FragData[1] = vec4(normal, 1.0f);
 }
