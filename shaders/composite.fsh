@@ -10,14 +10,14 @@ uniform sampler2D gdepth;
 const int RGBA16 = 1;
 const int gcolorFormat = RBGA16;
 
-/* DRAWBUFFERS:012 */
 
 void main() {
     vec3 finalComposite = texture2D(gcolor, texcoord.st).rgb;
     vec3 finalCompositeNorm = texture2D(gnormal, texcoord.st).rgb;
     vec3 finalCompositeDepth = texture2D(gdepth, texcoord.st).xyz;
 
-    gl_FragData[0] =vec4(finalComposite, 1.0);
-    gl_FragData[1] =vec4(finalCompositeNorm, 1.0);
-    gl_FragData[2] =vec4(finalCompositeDepth, 1.0);
+    /* DRAWBUFFERS:012*/
+    gl_FragData[0] = vec4(finalComposite, 1.0);
+    gl_FragData[1] = vec4(finalCompositeNormal, 1.0);
+    gl_FragData[2] = vec4(finalCompositeDepth, 1.0);
 }

@@ -4,7 +4,7 @@ varying vec4 texcoord;
 varying vec3 tcolor;
 
 void main() {
-    gl_Position = ftransform();
+  gl_Position = ftransform();
+  texcoord = gl_MultiTexCoord0;
 
-    texcoord = gl_MultiTexCoord0;
 }
