@@ -1,19 +1,19 @@
 #version 120
 
 varying vec4 texcoord;
-varying vec3 tcolor;
+// varying vec3 tcolor;
 
 uniform sampler2D gcolor;
 uniform sampler2D gnormal;
 uniform sampler2D gdepth;
 
-const int RGBA16 = 1;
-const int gcolorFormat = RBGA16;
+// const int RGBA16 = 1;
+// const int gcolorFormat = RBGA16;
 
 
 void main() {
     vec3 finalComposite = texture2D(gcolor, texcoord.st).rgb;
-    vec3 finalCompositeNorm = texture2D(gnormal, texcoord.st).rgb;
+    vec3 finalCompositeNormal = texture2D(gnormal, texcoord.st).rgb;
     vec3 finalCompositeDepth = texture2D(gdepth, texcoord.st).xyz;
 
     /* DRAWBUFFERS:012*/
