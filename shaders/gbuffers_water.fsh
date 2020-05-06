@@ -2,7 +2,6 @@
 
 uniform sampler2D texture;
 
-uniform float sunAngle;
 uniform float frameTimeCounter;
 
 varying vec4 texcoord;
@@ -10,6 +9,8 @@ varying vec4 tintcolor;
 varying vec4 ambientNdotL;
 varying mat3 tbnMat;
 varying vec3 worldpos;
+varying vec3 sunPos;
+varying vec3 camPos;
 varying vec3 viewVector;
 
 /*DRAWBUFFERS:012*/
@@ -67,6 +68,24 @@ vec3 waveNormal(vec3 position, float deltaPos) {
 	return normalize(vec3(normX, normY, 1.0f));
 }
 
+vec3 BlinnPhong(vec3 position, vec4 newnorm, vec3 sun, vec3 cam) {
+	vec3 lightcolor = vec3(.88, .8, .7);
+	vec4 r = vec4(sun - position, 1.0f);
+	vec4 Ir2 = vec4(lightcolor, 1.0f) / (pow(length(r), 2));
+	vec4 l_a = normalize(0.5 * tintcolor);
+  vec4 l_d = normalize(0.3 * Ir2 * dot(newnorm, normalize(r)));
+  vec4 h = normalize(normalize(vec4(cam - position, 1.0f)) + normalize(r));
+  vec4 l_s = normalize(0.8 * Ir2 * pow(dot(newnorm, h), 2));
+
+	//following for debugging purposes
+  // vec4 color = vec4(0.0f);
+	// color += l_a;
+	// color += l_d;
+	// color += l_s;
+	//complete Blinn-Phong:
+	vec4 color = l_a + l_d + l_s;
+  return color.rgb;
+}
 
 void main() {
 	float deltaPos = 0.25;
@@ -76,13 +95,13 @@ void main() {
 
 	vec3 position = worldpos;
 	vec3 bumpNormal = waveNormal(position, deltaPos);
-	
 	// bumpNormal *= vec3(0.2);
 	// bumpNormal += vec3(1, 1, 0.8);
 
 	vec4 normalMap = vec4(normalize(bumpNormal * tbnMat)*0.5+0.5, 1.0f);
-	// vec3 fcolor = normalize(normalMap.rgb * tintcolor.rgb);
-	vec3 fcolor = normalize(mix(normalMap.rgb, bumpNormal, 0.5f) + tintcolor.rgb);
-  gl_FragData[0] = vec4(fcolor, 0.8f);
-	gl_FragData[2] = tex * normalMap;
+	vec3 newcolor = BlinnPhong(position, normalMap, sunPos, camPos);
+	vec3 fcolor = mix(newcolor, normalMap.rgb, 0.11f).rgb;
+	float alpha = 0.7f;
+  gl_FragData[0] = vec4(fcolor, alpha);
+	// gl_FragData[2] = tex * normalMap;
 }

@@ -5,6 +5,7 @@ varying vec4 tintcolor;
 
 // waves
 uniform vec3 cameraPosition;
+uniform vec3 sunPosition;
 uniform float frameTimeCounter;
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
@@ -13,11 +14,13 @@ varying vec3 worldpos;
 varying vec3 viewVector;
 varying vec4 ambientNdotL;
 varying mat3 tbnMat;
+varying vec3 sunPos;
+varying vec3 camPos;
 
 attribute vec4 at_tangent;
 
 const float PI = 3.1415927;
-#define waves_amplitude 1.5
+#define waves_amplitude 2.0
 
 void main() {
   vec3 normal = normalize(gl_NormalMatrix * normalize(gl_Normal));
@@ -40,4 +43,6 @@ void main() {
 					 tangent.y, binormal.y, normal.y,
 					 tangent.z, binormal.z, normal.z);
   viewVector = tbnMat * (gl_ModelViewMatrix * gl_Vertex).xyz;
+  sunPos = sunPosition.xyz;
+  camPos = cameraPosition.xyz;
 }
