@@ -1,8 +1,5 @@
 #version 120
 
-uniform sampler2D gcolor;
-uniform sampler2D gnormal;
-uniform sampler2D gdepth;
 uniform sampler2D texture;
 
 uniform float sunAngle;
@@ -77,13 +74,15 @@ void main() {
 	vec4 albedo = tintcolor;
 	vec4 tex = texture2D(texture, texcoord.st);
 
-	vec3 position = worldpos.xyz;
+	vec3 position = worldpos;
 	vec3 bumpNormal = waveNormal(position, deltaPos);
-	bumpNormal *= vec3(0.2);
-	bumpNormal += vec3(1, 1, 0.8);
+	
+	// bumpNormal *= vec3(0.2);
+	// bumpNormal += vec3(1, 1, 0.8);
 
 	vec4 normalMap = vec4(normalize(bumpNormal * tbnMat)*0.5+0.5, 1.0f);
-
-  gl_FragData[0] = tex * normalMap;
-	gl_FragData[1] = normalMap;
+	// vec3 fcolor = normalize(normalMap.rgb * tintcolor.rgb);
+	vec3 fcolor = normalize(mix(normalMap.rgb, bumpNormal, 0.5f) + tintcolor.rgb);
+  gl_FragData[0] = vec4(fcolor, 0.8f);
+	gl_FragData[2] = tex * normalMap;
 }
