@@ -16,10 +16,10 @@ varying vec3 viewVector;
 /*DRAWBUFFERS:012*/
 //lagless shader's code
 float waveHeight (vec3 position) {
-	float wave = 0.0;
+	float wave = 5.0;
 	float factor = 1.0;
 	float amplitude = 0.2;
-	float speed = 3.0;
+	float speed = 1.5;
 	float size = 0.1;
 
 	float px = position.x/50.0 + 250.0;
@@ -45,7 +45,7 @@ float waveHeight (vec3 position) {
 	d = length(vec2(fpx,fpy));
 	float wave2 = 0.0;
 	for (int i = 0; i < 3; i++) {
-		wave2 -= d*factor*cos( (1/factor)*px*py*size + 1.0*frameTimeCounter*speed);
+		wave2 -= d*factor*cos( (1/factor)*px*py*size + frameTimeCounter*speed);
 		factor /= 2;
 	}
 	return amplitude*wave2 + amplitude*wave;
@@ -100,8 +100,9 @@ void main() {
 
 	vec4 normalMap = vec4(normalize(bumpNormal * tbnMat)*0.5+0.5, 1.0f);
 	vec3 newcolor = BlinnPhong(position, normalMap, sunPos, camPos);
-	vec3 fcolor = mix(newcolor, tintcolor.rgb, 0.11f).rgb;
-	float alpha = 0.7f;
+	vec3 fcolor = mix(tintcolor.rgb, newcolor, 0.11f).rgb;
+	float alpha = 0.75f;
+	vec3 oscillate = mix(normalMap.rgb, newcolor, 0.11f).rgb;
   gl_FragData[0] = vec4(fcolor, alpha);
 	// gl_FragData[0] = vec4(tintcolor.rgb * tex.rgb, alpha);
 	// gl_FragData[1] = normalMap;

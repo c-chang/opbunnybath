@@ -20,7 +20,7 @@ varying vec3 camPos;
 attribute vec4 at_tangent;
 
 const float PI = 3.1415927;
-#define waves_amplitude 2.0
+#define waves_amplitude 1.0
 
 void main() {
   vec3 normal = normalize(gl_NormalMatrix * normalize(gl_Normal));
@@ -31,7 +31,7 @@ void main() {
   worldpos = position.xyz + cameraPosition;
   float fy = fract(worldpos.y + 0.001);
   float wave = 0.05 * sin(2 * PI * (frameTimeCounter/1.25 + worldpos.x/2.5 + worldpos.z/5.0))
-           + 0.05 * sin(2 * PI * (frameTimeCounter/0.67 + worldpos.x/6.0 + worldpos.z/12.0));
+           + 0.05 * sin(2 * PI * (frameTimeCounter/3.67 + worldpos.x/6.0 + worldpos.z/12.0));
   position.y += clamp(wave, -fy, 1.0-fy)*waves_amplitude;
   gl_Position = gl_ProjectionMatrix * gbufferModelView * vec4(position, 1.0);
 
