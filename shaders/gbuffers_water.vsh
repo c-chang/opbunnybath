@@ -22,9 +22,9 @@ void main() {
   vec3 position = mat3(gbufferModelViewInverse) * (gl_ModelViewMatrix * gl_Vertex).xyz;
   worldpos = position.xyz + cameraPosition;
   float fy = fract(worldpos.y + 0.001);
-  float wave = 0.05 * sin(2 * PI * (frameTimeCounter/5.0 + worldpos.x/5.0 + worldpos.z/10.0))
-         + 0.05 * sin(2 * PI * (frameTimeCounter/3.0 + worldpos.x/12.0 + worldpos.z/24.0)) 
-         + 0.05 * sin(2 * PI * (frameTimeCounter/4.0 + worldpos.x/8.0 + worldpos.z/32.0));
+  float wave = 0.05 * sin(2 * PI * (frameTimeCounter/1.25 + worldpos.x/5.0 + worldpos.z/10.0))
+         + 0.05 * sin(2 * PI * (frameTimeCounter/0.75 + worldpos.x/12.0 + worldpos.z/24.0)) 
+         + 0.05 * sin(2 * PI * (frameTimeCounter/1.0 + worldpos.x/8.0 + worldpos.z/32.0));
   position.y += clamp(wave, -fy, 1.0-fy)*waves_amplitude;
   gl_Position = gl_ProjectionMatrix * gbufferModelView * vec4(position, 1.0);
 }
