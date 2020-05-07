@@ -26,13 +26,12 @@ void main() {
   vec3 normal = normalize(gl_NormalMatrix * normalize(gl_Normal));
   texcoord = gl_MultiTexCoord0;
   tintcolor = gl_Color;
-  // waves
+  //chris' waves
   vec3 position = mat3(gbufferModelViewInverse) * (gl_ModelViewMatrix * gl_Vertex).xyz;
   worldpos = position.xyz + cameraPosition;
-  ambientNdotL = vec4(0.2, 0.3, 0.6, 0.0);
   float fy = fract(worldpos.y + 0.001);
-  float wave = 0.05 * sin(2 * PI * (frameTimeCounter*0.3 + worldpos.x /  2.5 + worldpos.z / 5.0))
-         + 0.05 * sin(2 * PI * (frameTimeCounter*0.2 + worldpos.x / 6.0 + worldpos.z /  12.0));
+  float wave = 0.05 * sin(2 * PI * (frameTimeCounter/1.25 + worldpos.x/5.0 + worldpos.z/10.0))
+           + 0.05 * sin(2 * PI * (frameTimeCounter/1.75 + worldpos.x/12.0 + worldpos.z/24.0));
   position.y += clamp(wave, -fy, 1.0-fy)*waves_amplitude;
   gl_Position = gl_ProjectionMatrix * gbufferModelView * vec4(position, 1.0);
 

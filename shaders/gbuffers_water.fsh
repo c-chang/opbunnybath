@@ -100,8 +100,9 @@ void main() {
 
 	vec4 normalMap = vec4(normalize(bumpNormal * tbnMat)*0.5+0.5, 1.0f);
 	vec3 newcolor = BlinnPhong(position, normalMap, sunPos, camPos);
-	vec3 fcolor = mix(newcolor, normalMap.rgb, 0.11f).rgb;
+	vec3 fcolor = mix(newcolor, tintcolor.rgb, 0.11f).rgb;
 	float alpha = 0.7f;
   gl_FragData[0] = vec4(fcolor, alpha);
-	// gl_FragData[2] = tex * normalMap;
+	// gl_FragData[0] = vec4(tintcolor.rgb * tex.rgb, alpha);
+	// gl_FragData[1] = normalMap;
 }
