@@ -10,7 +10,7 @@ uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
 const float PI = 3.1415927;
 varying vec3 worldpos;
-#define waves_amplitude 0.5
+#define waves_amplitude 0.65
 
 void main() {
   gl_Position = ftransform();
