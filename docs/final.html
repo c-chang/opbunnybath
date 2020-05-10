@@ -32,6 +32,9 @@
 <br>
 <a href="milestone.html">Milestone Page Here</a>
 
+<p>
+  <a href="https://drive.google.com/a/berkeley.edu/file/d/1xME50Mv8pS-g40O-VjSP1YVaM741a8dv/view?usp=sharing">Link to our final project video!</a>
+</p>
 <div>
 
 <h2 align="middle">Abstract</h2>
@@ -45,22 +48,61 @@
     Realizing that waves within the vertex shader would be much easier to implement than anything in the fragment shader, we used a Khan Academy video (linked in “References” below) on wave equations to implement the sine wave functions. This allowed us to create our waves as a function of the x-coordinate, z-coordinate, and time. Our wave equations also allowed us to adjust the amplitude as well as the velocity of the wave through the period and the distance between two peaks. Our resulting waves can be seen in the Final Results section below. 
     For Blinn-Phong shading, some terms were not as easy to calculate without writing extensive code. For example, we needed to calculate the irradiance term, but this relied on writing out the whole lighting model. To tackle this problem, we used an estimate of the sun irradiance as a shortcut to be able to calculate the shading quickly. Although imperfect, this turned out to be a shortcut that in fact reduces the runtime of the code with the sacrifice of accuracy. The Blinn-Phong model used was directly derived from lecture slides and Project 4. The normal value used for our Blinn-Phong shading was derived from the bump mapping normal, which we also incorporated from Project 4. These normals used the wave height that we calculated within the vertex shader, mentioned above. Once our shading functions worked, it was a matter of mixing the correct values with each other (we did not realize order mattered for the mix() function of GLSL and that stumped us for a bit), and tweaking the mixing proportions to our aesthetic preferences.
 </p>
+  <div align="center">
+     <img src="river.png" width="480px" />
+     <figcaption align="middle">Color interpolation of water</figcaption>
+  </div>
 <p> 
   Some challenges that we encountered involved the documentation around the Minecraft codebase. It was difficult to figure out which variables were available to us and what each variable actually represents. For example, we had to use the variable gl_MultiTexCoord0 to find the texture coordinates used for our shader program, but there was nowhere we could find this variable definition besides looking at Youtube tutorials or existing shaders. In addition, even when we had equations for Blinn-Phong shading, it was unsure to us if we could easily find necessary terms like the sun position. To get through this obstacle, we looked at existing shader packs to find these variable names and many different Youtube videos to figure this out.
-  Another challenge that we faced was how difficult it was to debug our shader code. Whenever we made one small syntax error in our shader code, Minecraft only showed us one error message: “[Shaders] Error: Invalid program ‘gbuffers_water’”. There was no easier way that we could find the specific line number of where the code breaks, and GLSL linters in our editors didn’t happen to work for any of us. This took up a good amount of our time as it was our first time coding in this kind of environment. We didn’t have a clear cut solution to line-by-line debugging this except for being more careful with our code.
-  One other small issue that we continuously ran into was the lack of graphics power in our computers. Whenever we tried to run our shader code, our computers were often unable to multitask with other programs, and Minecraft itself became very laggy and the FPS was very low. 
+  <br>Another challenge that we faced was how difficult it was to debug our shader code. Whenever we made one small syntax error in our shader code, Minecraft only showed us one error message: <b>“[Shaders] Error: Invalid program ‘gbuffers_water’”</b>. There was no easier way that we could find the specific line number of where the code breaks, and GLSL linters in our editors didn’t happen to work for any of us. This took up a good amount of our time as it was our first time coding in this kind of environment. We didn’t have a clear cut solution to line-by-line debugging this except for being more careful with our code.
+  <br>One other small issue that we continuously ran into was the lack of graphics power in our computers. Whenever we tried to run our shader code, our computers were often unable to multitask with other programs, and Minecraft itself became very laggy and the FPS was very low. 
 </p>
+  <div align="center">
+     <img src="shaderissue.png" width="480px" />
+     <figcaption align="middle">Only error encountered, regardless of error</figcaption>
+  </div>
 <p> 
   We learned several things from this project. The first thing that we learned is that even though scientific papers are full of a lot of good technical information, in reality they may be difficult to implement. In our case, our implementation was severely handicapped by the pipeline we were working with. Initially, we thought that reflection and refraction would be the easiest things to implement and waves would be the hardest thing to implement; reflection and refraction were concepts taught in class that we were all very clear on, and we implemented a reflective surface with a shader file for our last assignment. However, after we started working with the Minecraft Shader coding environment, we realized this wasn’t the case. The papers we were looking at were using ray tracing to do reflection and refraction, and ray tracing wasn’t part of the pipeline we were working with. In our assignment 4, we reflect by sampling from an environment map using the incoming direction wi, but Minecraft doesn't provide a cubemap as it’s real-time rendering. We thought waves would be more difficult to implement because we had never seen the equations before, and they seemed rather esoteric to us. However, with a little time they proved to be easy to digest, and the implementation was smooth, as we had all the variables provided to us in the vertex shader file.
-  Another thing we learned was how to approach a project that doesn’t have much documentation. In the beginning we tried to watch tutorial videos on Minecraft shaders, but since there weren’t any tutorials specifically on water shading, they ended up not being what we were looking for; unbeknownst to us at the time, the water shader files in Minecraft have specific variables we needed to access, and these videos didn’t talk about any of them. We ended up looking at Minecraft water shaders built by other people and this proved to be the most helpful approach to give us the necessary knowledge of this mysterious Minecraft shader environment. We learned that when working in a poorly documented code environment, looking at existing code to get an idea of what variables are available to you (e.g. the sun position, the current time, the tint of water) is not a bad way to go.
+  <br>Another thing we learned was how to approach a project that doesn’t have much documentation. In the beginning we tried to watch tutorial videos on Minecraft shaders, but since there weren’t any tutorials specifically on water shading, they ended up not being what we were looking for; unbeknownst to us at the time, the water shader files in Minecraft have specific variables we needed to access, and these videos didn’t talk about any of them. We ended up looking at Minecraft water shaders built by other people and this proved to be the most helpful approach to give us the necessary knowledge of this mysterious Minecraft shader environment. We learned that when working in a poorly documented code environment, looking at existing code to get an idea of what variables are available to you (e.g. the sun position, the current time, the tint of water) is not a bad way to go.
 </p>
 
 <h2 align="middle">Final Results</h2>
-<p>
-    *insert content here*
-</p>
+<div align="center">
+      <table style="width=100%">
+          <tr>
+              <td align="middle">
+              <img src="shaderwave1cut.gif" width="480px" />
+              <figcaption align="middle">Rendered waves</figcaption>
 
-<h2 align="middle">References</h2>
+              <td align="middle">
+              <img src="shaderwavecut.gif" width="480px" />
+              <figcaption align="middle">Rendered waves with default texture</figcaption>
+          </tr>
+          <tr>
+              <td align="middle">
+              <img src="shaderfalls.png" width="480px" />
+              <figcaption align="middle">Blinn-Phong shading of bump normal mapping of water position</figcaption>
+
+              <td align="middle">
+              <img src="shaderwavesbette.gif" width="480px" />
+              <figcaption align="middle">Complete shading over time</figcaption>
+          </tr>
+      </table>
+  </div>
+
+<h2 align="middle">References Used</h2>
+<a href="https://www.youtube.com/watch?v=swjfVnGJiNY&list=PLq1jSPKGzcoO0QZ704QJi919VW6nTbcM0&index=1">Continuum Graphics' OpenGLSL Tutorial Series</a>
+  <br>
+  <a href="https://www.youtube.com/watch?v=mU80e0eMLjc">Advanced C++ OpenGLSL Shader Tutorial</a>
+  <br>
+  <a href="https://hydrogen2014imac.files.wordpress.com/2013/02/realisticwater.pdf">Realistic Water using Bump Mapping and Refraction</a>
+  <br>
+  <a href="https://developer.nvidia.com/sites/all/modules/custom/gpugems/books/GPUGems/gpugems_ch01.html">Effective Water Simulation from Physical Models</a>
+<br>
+  <a href="https://www.khanacademy.org/science/physics/mechanical-waves-and-sound/mechanical-waves/v/wave-equation">Khan Academy Wave Equation</a>  
+<br>
+  <a href="https://github.com/sp614x/optifine/blob/master/OptiFineDoc/doc/shaders.txt">Optifine Mod Minecraft Shaders Documentation</a>
+  
 
 <h2 align="middle">Team Contributions</h2>
   <p>
